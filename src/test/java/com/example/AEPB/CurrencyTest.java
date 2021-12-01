@@ -5,12 +5,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class HelloTest {
+class CurrencyTest {
 
 	@Test
-	void should_no_null() {
+	void should_equals() {
 
-		Hello hello = new Hello();
-		assertNotNull(hello);
 	}
 }
