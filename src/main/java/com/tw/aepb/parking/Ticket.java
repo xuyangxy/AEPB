@@ -1,17 +1,22 @@
 package com.tw.aepb.parking;
 
+import java.util.Date;
+
 public class Ticket {
 
-    private int parkingLotSerialNumber;
+    private final int parkingLotSerialNumber;
 
-    private int parkSpaceNumber;
+    private final int parkSpaceNumber;
 
-    private String carNumber;
+    private final String carNumber;
+
+    private final Date startParkTime;
 
     public Ticket(int parkingLotSerialNumber, int parkSpaceNumber, String carNumber) {
         this.carNumber = carNumber;
         this.parkingLotSerialNumber = parkingLotSerialNumber;
         this.parkSpaceNumber = parkSpaceNumber;
+        this.startParkTime = new Date();
     }
 
     public int getParkingLotSerialNumber() {
@@ -24,5 +29,9 @@ public class Ticket {
 
     public String getCarNumber() {
         return carNumber;
+    }
+
+    public Date getStartParkTime() {
+        return startParkTime;
     }
 }

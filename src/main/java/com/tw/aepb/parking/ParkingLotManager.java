@@ -8,9 +8,12 @@ public class ParkingLotManager {
 
     private final List<ParkingLot> parkingLots;
 
+    private final List<Car> parkingLotsCarList;
+
 
     public ParkingLotManager() {
         this.parkingLots = new ArrayList<>();
+        this.parkingLotsCarList = new ArrayList<>();
     }
 
 
@@ -20,11 +23,15 @@ public class ParkingLotManager {
 
 
     public Ticket parkOn(Car car) {
+        if (parkingLotsCarList.contains(car)) {
+            throw new RuntimeException("error, the car already exists");
+        }
         Integer parkingLotNumber = this.getHasNotEmptyParkingLotNumber();
         if (parkingLotNumber == null) {
             throw new RuntimeException("error, all parkingLot full");
         }
         int number = parkingLots.get(parkingLotNumber).parkOn(car);
+        parkingLotsCarList.add(car);
         return new Ticket(parkingLotNumber, number, car.getCarNumber());
     }
 
@@ -49,6 +56,8 @@ public class ParkingLotManager {
         if (Objects.isNull(parkingLot)) {
             throw new RuntimeException("error, parkingLot not exist");
         }
-        return parkingLot.parkUp(ticket);
+        Car car = parkingLot.parkUp(ticket);
+        parkingLotsCarList.remove(car);
+        return car;
     }
 }
